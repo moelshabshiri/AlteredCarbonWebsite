@@ -1,0 +1,102 @@
+<div class="col-12">
+  <table *ngIf="orderHistory">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Value</th>
+        <th>Acres</th>
+        <th>Order Points</th>
+        <th>Approved</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderHistory.orderItems let i=index ">
+        <td>{{ item.type }}</td>
+        <td>
+          <input
+            required
+            [disabled]="
+              item.approved ||
+              orderHistory.status == 'farmerReviewed' ||
+              (currentUser$ | async)?.accountType == 'cooperative' || historyIteration != orderLength-1
+            "
+            [(ngModel)]="item.typeValue"
+            type="number"
+            class="form-control"
+            [value]="item.typeValue"
+          />
+        </td>
+        <td>
+          <input
+            required
+            [disabled]="
+              item.approved ||
+              orderHistory.status == 'farmerReviewed' ||
+              (currentUser$ | async)?.accountType == 'cooperative' || historyIteration != orderLength-1
+            "
+            [(ngModel)]="item.acres"
+            type="number"
+            class="form-control"
+            [value]="item.acres"
+          />
+        </td>
+        <td>{{ item.acres * item.typeValue * 24 }}</td>
+
+        <ng-container
+          *ngIf="(currentUser$ | async)?.accountType == 'cooperative'"
+        >
+          <td>
+            <input
+              [disabled]="
+                orderHistory.status != 'farmerReviewed' &&
+                orderHistory.status != 'pending' && historyIteration != orderLength-1
+              "
+              [(ngModel)]="item.approved"
+              type="checkbox"
+              class="form-control"
+              [value]="item.approved"
+            />
+          </td>
+        </ng-container>
+        <ng-container *ngIf="(currentUser$ | async)?.accountType == 'farmer'">
+          <td class="uppercase">{{ item.approved }}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <ng-container
+    *ngIf="
+      (currentUser$ | async)?.accountType == 'cooperative' &&
+      ((orderHistory.status == 'pending' ) ||
+        orderHistory.status == 'farmerReviewed') && historyIteration == orderLength-1
+    "
+  >
+    <input
+      [(ngModel)]="comment"
+      class="form-control"
+      placeholder="Comment"
+    />
+
+    <button (click)="submitChanges()" class="btn">
+      Submit changes <i class="fa fa-angle-right"></i>
+    </button>
+  </ng-container>
+
+  <ng-container
+    *ngIf="
+      (currentUser$ | async)?.accountType == 'farmer' &&
+      orderHistory.status == 'coopReviewed' && historyIteration == orderLength-1
+    "
+  >
+    <button (click)="update()" class="btn">
+      Submit changes <i class="fa fa-angle-right"></i>
+    </button>
+  </ng-container>
+
+  <div *ngIf="orderHistory.comment">
+    Comment from the Cooperative: {{ orderHistory.comment }}
+  </div>
+</div>

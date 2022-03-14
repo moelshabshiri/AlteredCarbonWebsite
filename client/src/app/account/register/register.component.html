@@ -1,0 +1,135 @@
+<div class="contact-section">
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.invalid)" *ngIf="form">
+      <h1>Register</h1>
+
+      <div>
+        <input
+          formControlName="name"
+          id="name"
+          class="form-control"
+          placeholder="Name"
+        />
+
+        <span
+          class="text-danger"
+          *ngIf="form.get('name')?.invalid
+          && form.get('name')?.touched
+          && form.get('name')?.errors?.['required'] 
+          "
+        >
+          Name is required
+        </span>
+      </div>
+
+      <div>
+        <input
+          formControlName="email"
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="Email"
+        />
+        <span
+          class="text-danger"
+          *ngIf="form.get('email')?.invalid
+          && form.get('email')?.touched
+          && form.get('email')?.errors?.['required']
+          "
+        >
+          Email is required
+        </span>
+
+        <span
+          class="text-danger"
+          *ngIf="form.get('email')?.invalid
+        && form.get('email')?.touched
+        && form.get('email')?.errors?.['pattern']
+        "
+        >
+          Email is not valid
+        </span>
+      </div>
+
+      <div>
+        <input
+          formControlName="phoneNumber"
+          id="phoneNumber"
+          class="form-control"
+          placeholder="Phone Number"
+        />
+
+        <span
+          class="text-danger"
+          *ngIf="form.get('phoneNumber')?.invalid
+          && form.get('phoneNumber')?.touched
+          && form.get('phoneNumber')?.errors?.['required'] 
+          "
+        >
+          Phone Number is required or invalid
+        </span>
+      </div>
+
+      <div>
+        <input
+          formControlName="password"
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          
+        />
+
+        <span
+        class="text-danger"
+          *ngIf="form.get('password')?.invalid
+          && form.get('password')?.touched
+          && form.get('password')?.errors
+          "
+        >
+          Password should be at least 6 characters long and requires at least one non-alphanumeric, one lowercase letter, and uppercase letter
+        </span>
+      </div>
+
+      <div>
+        <input
+          formControlName="confirmPassword"
+          type="password"
+          id="confirmPassword"
+          class="form-control"
+          placeholder="Confirm Password"
+        />
+
+        <span
+          class="text-danger"
+          *ngIf="form.get('confirmPassword')?.invalid
+          && form.get('confirmPassword')?.touched
+          || form.get('confirmPassword')?.value != form.get('password')?.value
+          "
+        >
+          Passwords do not match
+        </span>
+        
+      </div>
+      <div>
+        <select formControlName="type" required>
+          <option value="" disabled selected>Account Type</option>
+          <option value="farmers">Farmer</option>
+          <option value="cooperative">Cooperative</option>
+        </select>
+
+        <span
+          class="text-danger"
+          *ngIf="form.get('type')?.invalid
+        && form.get('type')?.touched
+        && form.get('type')?.errors?.['required']
+        "
+        >
+          Choose an account type
+        </span>
+      </div>
+
+      <button class="btn" type="submit">Register</button>
+    </form>
+  </div>
+</div>

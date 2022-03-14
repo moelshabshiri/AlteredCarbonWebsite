@@ -10,9 +10,11 @@ namespace Infrastructure.Data
         {
         }
 
-        public DbSet<Product> Products { get; set; }
-        public DbSet<ProductBrand> ProductBrands { get; set; }
-        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<KitOrder> KitOrders { get; set; }
+        public DbSet<KitOrderHistory> KitOrderHistories { get; set; }
+        public DbSet<KitOrderItem> KitOrderItems { get; set; }
+        public DbSet<ItemHistory> itemHistorys { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder){
             base.OnModelCreating(modelBuilder);

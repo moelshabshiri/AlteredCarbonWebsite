@@ -1,0 +1,17 @@
+<a [routerLink]="['/form']" [queryParams]="{ type: type }" class="containerCard">
+  <div class="card">
+    <div class="card__thumb">
+      <img src="{{ img }}" alt="Picture by Kyle Cottrell" class="card__image" />
+      <div class="card__caption">
+        <h2 class="card__title">{{ type }}</h2>
+        <a
+          [routerLink]="['/form']"
+          [queryParams]="{ type: type }"
+          routerLinkActive="router-link-active"
+          class="card__button"
+          >Buy</a
+        >
+      </div>
+    </div>
+  </div>
+</a>

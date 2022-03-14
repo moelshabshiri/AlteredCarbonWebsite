@@ -1,0 +1,68 @@
+<div  class="contact-section">
+  <div class="container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.invalid)">
+        <h1 >Login</h1>
+
+      <div >
+        <!-- <label for="inputEmail">Email</label> -->
+
+        <input
+          formControlName="email"
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="Email"
+        />
+        <span
+          class="text-danger"
+          *ngIf="loginForm.get('email')?.invalid
+        && loginForm.get('email')?.touched
+        && loginForm.get('email')?.errors?.['required']
+        "
+        >
+          Email is required
+        </span>
+
+        <span
+          class="text-danger"
+          *ngIf="loginForm.get('email')?.invalid
+      && loginForm.get('email')?.touched
+      && loginForm.get('email')?.errors?.['pattern']
+      "
+        >
+          Email is not valid
+        </span>
+      </div>
+
+      <div >
+        <!-- <label for="password">Password</label> -->
+        <input
+          formControlName="password"
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+        />
+
+        <span
+          class="text-danger"
+          *ngIf="loginForm.get('password')?.invalid
+      && loginForm.get('password')?.touched
+      && loginForm.get('password')?.errors?.['required']
+      "
+        >
+          Password is required
+        </span>
+      </div>
+
+    
+      <button
+    
+        class="btn"
+        type="submit"
+      >
+        Sign in
+      </button>
+    </form>
+  </div>
+</div>

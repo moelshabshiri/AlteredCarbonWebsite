@@ -1,0 +1,29 @@
+<div class="tableSection">
+  <h1>History Details</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Order</th>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let history of order.orderHistories; let i = index">
+      <tr (click)="clicked(i)" class="historyDetails">
+        <td># {{ i + 1 }}</td>
+        <td>{{ history.datetimeOfHistory | date: "medium" }}</td>
+        <td>{{ history.orderPoints }}</td>
+        <td class="uppercase">{{ history.status }}</td>
+      </tr>
+      <td *ngIf="checked[i]" class="itemDetails" colspan="4">
+        <app-item-detailed
+          orderId="{{ order.id }}"
+          historyId="{{ history.id }}"
+          orderLength="{{ order.orderHistories.length }}"
+          historyIteration="{{ i }}"
+        ></app-item-detailed>
+      </td>
+    </tbody>
+  </table>
+</div>

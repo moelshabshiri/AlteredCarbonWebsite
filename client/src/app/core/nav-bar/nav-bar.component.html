@@ -1,0 +1,87 @@
+<!-- <div class="d-flex align-items-center">
+    <a routerLink="/basket" class="position-relative">
+      <i class="fa fa-shopping-cart fa-2x mr-5 text-dark"></i>
+    </a>
+
+  
+
+    <ng-container *ngIf="currentUser$ | async as user">
+      <div class="dropdown ml-3 mr-5" dropdown>
+        <a class="dropdown-toggle" style="cursor: pointer" dropdownToggle>
+          <strong>Welcome {{ (currentUser$ | async)!.name }}</strong>
+        </a>
+        <div
+          class="dropdown-menu dropdown-menu-right"
+          style="cursor: pointer"
+          *dropdownMenu
+        >
+          <a
+            routerLink="/basket"
+            class="dropdown-item d-flex align-items-center py-2"
+          >
+            <i class="fa fa-shopping-cart mr-3"></i> View Basket
+          </a>
+          <a
+            routerLink="/orders"
+            class="dropdown-item d-flex align-items-center py-2"
+          >
+            <i class="fa fa-history mr-3"></i> View Orders
+          </a>
+          <div class="dropdown-divider"></div>
+          <a
+            (click)="logout()"
+            class="dropdown-item d-flex align-items-center py-2"
+          >
+            <i class="fa fa-sign-out mr-3"></i> Logout
+          </a>
+        </div>
+      </div>
+    </ng-container>
+  </div> -->
+
+<div class="navbar">
+  <div class="container">
+    <a class="logo" href="#">Altered<span>Carbon</span></a>
+    <img
+      id="mobileCta"
+      class="mobileMenu"
+      src="../../../assets/images/menu.svg"
+      alt="Open Menu"
+    />
+    <nav>
+      <img
+        id="mobileExit"
+        class="mobileMenuExit"
+        src="../../../assets/images/exit.svg"
+        alt="Close Menu"
+      />
+      <ul class="primaryNav">
+        <li ><a href="#">Home</a></li>
+        <li *ngIf="(currentUser$ | async)?.accountType != 'cooperative'">
+          <a href="#shop">Shop</a>
+        </li>
+        <li><a [routerLink]="['/orders']">Orders</a></li>
+      </ul>
+      <ul class="secondary-nav">
+        <li *ngIf="(currentUser$ | async)?.accountType != 'cooperative'">
+          <a routerLink="/basket">
+            <img src="../../../assets/images/basket.png" alt=""
+          /></a>
+        </li>
+<ng-container *ngIf="(currentUser$ | async) === null">
+        <li><a href="account/register ">Register</a></li>
+        <li  class="go-premium-cta">
+          <a routerLink="/account/login">Log In</a>
+        </li>
+      </ng-container>
+        <li
+          (click)="logout()"
+          *ngIf="currentUser$ | async"
+          class="go-premium-cta"
+        >
+          <a routerLink="/account/login">Log Out</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.featuresList {
+  margin: 0;
+  padding-left: .1em;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+
+  li {
+    font-size: 1.1em;
+    margin-bottom: 1em;
+    margin-left: 2em;
+    position: relative;
+  }
+}

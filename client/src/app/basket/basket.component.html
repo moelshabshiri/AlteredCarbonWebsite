@@ -1,0 +1,47 @@
+<div class="tableSection">
+  <h1>Basket</h1>
+  <div *ngIf="basket === null">
+    <h1>There are no items in your basket</h1>
+  </div>
+
+  <div *ngIf="basket">
+    <ng-container *ngIf="basket.items.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Points</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of basket.items">
+            <td>
+              {{ item.type }}
+            </td>
+            <td>
+              {{ item.orderPoints }}
+            </td>
+
+            <td>
+              <a>
+                <img
+                  (click)="removeBasketItem(item.id)"
+                  src="https://img.icons8.com/ios-glyphs/30/000000/trash--v1.png"
+                />
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+
+  <div class="summarySection">
+    <div>
+      <h3>Order Summary</h3>
+      <h4>Total: {{ basket.total }}</h4>
+    </div>
+    <a (click)="submitOrder()" class="btn"> Confirm Purchase </a>
+  </div>
+</div>

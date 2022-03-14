@@ -1,0 +1,34 @@
+.tableSection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  
+  table {
+    width: 70em;
+    border-collapse: collapse;
+    overflow: hidden;
+    box-shadow: 0 0 0;
+  
+    a {
+      cursor: none;
+    }
+  }
+  
+  th,
+  td {
+    background-color: transparent;
+    cursor: default;
+  }
+  
+ 
+  thead {
+    th {
+      background-color: transparent;
+      color: var(--primary-color);
+    }
+  }
+
+  
