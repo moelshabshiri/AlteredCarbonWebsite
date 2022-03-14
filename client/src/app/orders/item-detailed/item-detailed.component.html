@@ -48,8 +48,7 @@
           <td>
             <input
               [disabled]="
-                orderHistory.status != 'farmerReviewed' &&
-                orderHistory.status != 'pending' && historyIteration != orderLength-1
+                historyIteration != orderLength-1
               "
               [(ngModel)]="item.approved"
               type="checkbox"
